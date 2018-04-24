@@ -1,6 +1,8 @@
 # irb -r './spec/feature_tests.rb'
 
 require './lib/oystercard.rb'
+require './lib/station.rb'
+require './lib/journey.rb'
 
 def set_balance
   oystercard = Oystercard.new
@@ -68,16 +70,26 @@ def journey_history
 end
 
 def station
-  station = Station.new
+  p station = Station.new("Stratford", 3)
 end
 
-set_balance
-top_up
-touched_in
-balance_deducted
-save_entry_station
-forget_entry_station
-save_exit_station
-create_journey
-journey_history
-station
+def journey
+  p journey = Journey.new
+end
+
+def touch_in
+  journey = Journey.new
+  journey.touch_in('entry_station')
+end
+
+# set_balance
+# top_up
+# touched_in
+# balance_deducted
+# save_entry_station
+# forget_entry_station
+# save_exit_station
+# create_journey
+# journey_history
+# station
+journey
