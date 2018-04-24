@@ -24,7 +24,7 @@ def balance_deducted
   oystercard = Oystercard.new
   oystercard.top_up(10)
   oystercard.touch_in('station')
-  oystercard.touch_out
+  oystercard.touch_out('exit_station')
   p oystercard
 end
 
@@ -39,11 +39,19 @@ def forget_entry_station
   oystercard = Oystercard.new
   oystercard.top_up(10)
   oystercard.touch_in('station')
-  oystercard.touch_out
+  oystercard.touch_out('exit_station')
   p oystercard
 end
 
 def save_exit_station
+  oystercard = Oystercard.new
+  oystercard.top_up(10)
+  oystercard.touch_in('station')
+  oystercard.touch_out('exit_station')
+  p oystercard
+end
+
+def create_journey
   oystercard = Oystercard.new
   oystercard.top_up(10)
   oystercard.touch_in('station')
@@ -58,3 +66,4 @@ balance_deducted
 save_entry_station
 forget_entry_station
 save_exit_station
+create_journey

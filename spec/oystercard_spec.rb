@@ -9,11 +9,15 @@ describe Oystercard do
 
   describe '#initialize' do
     it 'should have a default balance equal to DEFAULT_BALANCE' do
-    expect(oystercard.balance).to eq Oystercard::DEFAULT_BALANCE
-  end
-  it 'should not be in journey as a default' do
-    expect(oystercard.in_journey?).to eq false
-  end
+      expect(oystercard.balance).to eq Oystercard::DEFAULT_BALANCE
+    end
+    it 'should not be in journey as a default' do
+      expect(oystercard.in_journey?).to eq false
+    end
+    it 'should have a journey (entry & exit station are nil)' do
+      journey_init = { entry_station: nil, exit_station: nil }
+      expect(oystercard.journey).to eq journey_init
+    end
   end
 
   describe '#balance' do
