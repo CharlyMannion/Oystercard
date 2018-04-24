@@ -67,6 +67,10 @@ def journey_history
   p oystercard
 end
 
+def station
+  station = Station.new
+end
+
 set_balance
 top_up
 touched_in
@@ -76,3 +80,4 @@ forget_entry_station
 save_exit_station
 create_journey
 journey_history
+station
