@@ -7,4 +7,8 @@ class Journey
     @journey_history = []
   end
 
+  def touch_in(entry_station)
+    @current_journey[:entry_station] = entry_station
+  end
+
 end
