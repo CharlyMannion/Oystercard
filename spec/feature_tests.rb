@@ -80,6 +80,14 @@ end
 def touch_in
   journey = Journey.new
   journey.touch_in('entry_station')
+  p journey
+end
+
+def touch_out
+  journey = Journey.new
+  journey.touch_in('entry_station')
+  journey.touch_out('exit_station')
+  p journey
 end
 
 # set_balance
@@ -93,3 +101,5 @@ end
 # journey_history
 # station
 journey
+touch_in
+touch_out

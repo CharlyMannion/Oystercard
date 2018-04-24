@@ -11,4 +11,15 @@ class Journey
     @current_journey[:entry_station] = entry_station
   end
 
+  def touch_out(exit_station)
+    @current_journey[:exit_station] = exit_station
+    @journey_history << @current_journey
+    reset_current_journey
+  end
+
+private
+
+def reset_current_journey
+  @current_journey = {entry_station: nil, exit_station: nil}
+end
 end

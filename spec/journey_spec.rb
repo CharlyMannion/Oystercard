@@ -31,5 +31,26 @@ describe Journey do
 
   end
 
+  describe '#touch_out' do
+
+    before do
+      journey.touch_in(entry_station)
+    end
+    # it 'should set in_journey to false' do
+    #   oystercard.touch_out(exit_station)
+    #   expect(oystercard.in_journey?).to eq false
+    # end
+    it 'should delete entry and exit station' do
+      journey.touch_out(exit_station)
+      end_journey = { entry_station: nil, exit_station: nil }
+      expect(journey.current_journey).to eq end_journey
+    end
+    it 'should save exit station' do
+      journey.touch_out(exit_station)
+      end_journey = { entry_station: nil, exit_station: exit_station }
+      expect(journey.current_journey).to eq end_journey
+    end
+  end
+
 
 end

@@ -11,16 +11,16 @@ describe Oystercard do
     it 'should have a default balance equal to DEFAULT_BALANCE' do
       expect(oystercard.balance).to eq Oystercard::DEFAULT_BALANCE
     end
-    it 'should not be in journey as a default' do
-      expect(oystercard.in_journey?).to eq false
-    end
-    it 'should have an empty journey as default (entry & exit station are nil)' do
-      journey_init = { entry_station: nil, exit_station: nil }
-      expect(oystercard.journey).to eq journey_init
-    end
-    it 'should have an empty journey history' do
-      expect(oystercard.journey_history).to eq []
-    end
+    # it 'should not be in journey as a default' do
+    #   expect(oystercard.in_journey?).to eq false
+    # end
+    # it 'should have an empty journey as default (entry & exit station are nil)' do
+    #   journey_init = { entry_station: nil, exit_station: nil }
+    #   expect(oystercard.journey).to eq journey_init
+    # end
+    # it 'should have an empty journey history' do
+    #   expect(oystercard.journey_history).to eq []
+    # end
   end
 
   describe '#balance' do
@@ -47,12 +47,12 @@ describe Oystercard do
       oystercard.touch_in(entry_station)
     end
 
-    it 'should set in_journey to true if touched in' do
-      expect(oystercard.in_journey?).to eq true
-    end
-    it 'records the entry station' do
-      expect(oystercard.entry_station).to eq entry_station
-    end
+    # it 'should set in_journey to true if touched in' do
+    #   expect(oystercard.in_journey?).to eq true
+    # end
+    # it 'records the entry station' do
+    #   expect(oystercard.entry_station).to eq entry_station
+    # end
 
   end
 
