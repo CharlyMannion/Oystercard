@@ -14,9 +14,12 @@ describe Oystercard do
     it 'should not be in journey as a default' do
       expect(oystercard.in_journey?).to eq false
     end
-    it 'should have a journey (entry & exit station are nil)' do
+    it 'should have an empty journey as default (entry & exit station are nil)' do
       journey_init = { entry_station: nil, exit_station: nil }
       expect(oystercard.journey).to eq journey_init
+    end
+    it 'should have an empty journey history' do
+      expect(oystercard.journey_history).to eq []
     end
   end
 
@@ -84,5 +87,14 @@ describe Oystercard do
     end
   end
 
+  describe '#journey_history' do
+    it 'should save the journey' do
+      oystercard.top_up(10)
+      oystercard.touch_in(entry_station)
+      oystercard.touch_out(exit_station)
+      journey = { entry_station: entry_station, exit_station: exit_station }
+      expect(oystercard.journey_history).to include journey
+    end
+  end
 
 end

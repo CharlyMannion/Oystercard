@@ -59,6 +59,14 @@ def create_journey
   p oystercard
 end
 
+def journey_history
+  oystercard = Oystercard.new
+  oystercard.top_up(10)
+  oystercard.touch_in('station')
+  oystercard.touch_out('exit_station')
+  p oystercard
+end
+
 set_balance
 top_up
 touched_in
@@ -67,3 +75,4 @@ save_entry_station
 forget_entry_station
 save_exit_station
 create_journey
+journey_history
