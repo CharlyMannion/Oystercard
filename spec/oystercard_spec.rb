@@ -60,6 +60,12 @@ end
         oystercard.touch_in(entry_station)
         expect { oystercard.touch_out }. to change{ oystercard.balance }.by(-Oystercard::FARE)
       end
+      it 'should delete entry station' do
+        oystercard.top_up(10)
+        oystercard.touch_in(entry_station)
+        oystercard.touch_out
+        expect(oystercard.entry_station).to be nil
+      end
     end
 
 
