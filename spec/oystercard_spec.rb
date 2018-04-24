@@ -3,6 +3,9 @@ require './lib/oystercard.rb'
 describe Oystercard do
   subject(:oystercard) { described_class.new }
   let (:entry_station) { double :station }
+  let (:exit_station) { double :station }
+
+
 
   describe '#initialize' do
     it 'should have a default balance equal to DEFAULT_BALANCE' do
@@ -11,7 +14,7 @@ describe Oystercard do
   it 'should not be in journey as a default' do
     expect(oystercard.in_journey?).to eq false
   end
-end
+  end
 
   describe '#balance' do
     it 'a should have a balance of 0' do
@@ -25,48 +28,57 @@ end
       expect(oystercard.balance).to eq 10
     end
     it 'should raise an error if the balance is at max limit' do
-      allow(oystercard).to receive(:balance) { 60 }
+      allow(oystercard).to receive(:balance).and_return(70)
       expect { oystercard.top_up(40) }.to raise_error "Invalid top up. This card has a max limit of #{Oystercard::MAX_BALANCE}"
     end
   end
 
-  # it { is_expected.to respond_to(:touch_out) }
+  describe '#touch_in' do
 
-    describe '#touch_in' do
-      it 'should set in_journey to true if touched in' do
-        oystercard.top_up(10)
-        oystercard.touch_in(entry_station)
-        expect(oystercard.in_journey?).to eq true
-      end
-      it 'records the entry station' do
-        oystercard.top_up(10)
-        oystercard.touch_in(entry_station)
-        expect(oystercard.entry_station).to eq entry_station
-      end
-      it 'raises an error if the card has insufficient balance to touch in' do
-        expect { oystercard.touch_in(entry_station) }.to raise_error "Insufficient balance"
-      end
+    before do
+      oystercard.top_up(10)
+      oystercard.touch_in(entry_station)
     end
 
-    describe '#touch_out' do
-      it 'should set in_journey to false' do
-        oystercard.top_up(10)
-        oystercard.touch_in(entry_station)
-        oystercard.touch_out
-        expect(oystercard.in_journey?).to eq false
-      end
-      it 'should deduct from the balance' do
-        oystercard.top_up(10)
-        oystercard.touch_in(entry_station)
-        expect { oystercard.touch_out }. to change{ oystercard.balance }.by(-Oystercard::FARE)
-      end
-      it 'should delete entry station' do
-        oystercard.top_up(10)
-        oystercard.touch_in(entry_station)
-        oystercard.touch_out
-        expect(oystercard.entry_station).to be nil
-      end
+    it 'should set in_journey to true if touched in' do
+      expect(oystercard.in_journey?).to eq true
     end
+    it 'records the entry station' do
+      expect(oystercard.entry_station).to eq entry_station
+    end
+
+  end
+
+  describe '#touch in error' do
+
+    it 'raises an error if the card has insufficient balance to touch in' do
+      expect { oystercard.touch_in(entry_station) }.to raise_error "Insufficient balance"
+    end
+
+  end
+
+  describe '#touch_out' do
+
+    before do
+      oystercard.top_up(10)
+      oystercard.touch_in(entry_station)
+    end
+    it 'should set in_journey to false' do
+      oystercard.touch_out(exit_station)
+      expect(oystercard.in_journey?).to eq false
+    end
+    it 'should deduct from the balance' do
+      expect { oystercard.touch_out(exit_station) }. to change{ oystercard.balance }.by(-Oystercard::FARE)
+    end
+    it 'should delete entry station' do
+      oystercard.touch_out(exit_station)
+      expect(oystercard.entry_station).to be nil
+    end
+    it 'should save exit station' do
+      oystercard.touch_out(exit_station)
+      expect(oystercard.exit_station).to eq exit_station
+    end
+  end
 
 
 end

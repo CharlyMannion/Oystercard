@@ -43,9 +43,18 @@ def forget_entry_station
   p oystercard
 end
 
+def save_exit_station
+  oystercard = Oystercard.new
+  oystercard.top_up(10)
+  oystercard.touch_in('station')
+  oystercard.touch_out('exit_station')
+  p oystercard
+end
+
 set_balance
 top_up
 touched_in
 balance_deducted
 save_entry_station
 forget_entry_station
+save_exit_station
