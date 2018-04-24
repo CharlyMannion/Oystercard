@@ -12,7 +12,7 @@ class Journey
   end
 
   def touch_out(exit_station)
-    @current_journey[:exit_station] = exit_station
+    @current_journey[:exit_station] = exit_station #setting hash of exit_station from nil to exit_station
     @journey_history << @current_journey
   end
 

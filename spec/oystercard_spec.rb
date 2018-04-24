@@ -70,21 +70,21 @@ describe Oystercard do
       oystercard.top_up(10)
       oystercard.touch_in(entry_station)
     end
-    it 'should set in_journey to false' do
-      oystercard.touch_out(exit_station)
-      expect(oystercard.in_journey?).to eq false
-    end
+    # it 'should set in_journey to false' do
+    #   oystercard.touch_out(exit_station)
+    #   expect(oystercard.in_journey?).to eq false
+    # end
     it 'should deduct from the balance' do
       expect { oystercard.touch_out(exit_station) }. to change{ oystercard.balance }.by(-Oystercard::FARE)
     end
-    it 'should delete entry station' do
-      oystercard.touch_out(exit_station)
-      expect(oystercard.entry_station).to be nil
-    end
-    it 'should save exit station' do
-      oystercard.touch_out(exit_station)
-      expect(oystercard.exit_station).to eq exit_station
-    end
+    # it 'should delete entry station' do
+    #   oystercard.touch_out(exit_station)
+    #   expect(oystercard.entry_station).to be nil
+    # end
+    # it 'should save exit station' do
+    #   oystercard.touch_out(exit_station)
+    #   expect(oystercard.exit_station).to eq exit_station
+    # end
   end
 
   describe '#journey_history' do
