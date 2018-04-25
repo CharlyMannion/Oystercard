@@ -90,6 +90,13 @@ def touch_out
   p journey
 end
 
+def journey_complete
+  journey = Journey.new
+  journey.touch_in('entry_station')
+  journey.touch_out('exit_station')
+  p journey
+end
+
 # set_balance
 # top_up
 # touched_in
@@ -103,3 +110,6 @@ end
 journey
 touch_in
 touch_out
+journey_complete
+
+# irb -r './spec/feature_tests.rb'
