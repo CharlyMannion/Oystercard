@@ -53,14 +53,4 @@ describe Oystercard do
     end
   end
 
-  describe '#journey_history' do
-    it 'should save the journey' do
-      oystercard.top_up(10)
-      oystercard.touch_in(entry_station)
-      oystercard.touch_out(exit_station)
-      journey = { entry_station: entry_station, exit_station: exit_station }
-      expect(oystercard.journey_history).to include journey
-    end
-  end
-
 end

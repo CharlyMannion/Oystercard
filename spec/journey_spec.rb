@@ -44,4 +44,13 @@ describe Journey do
     end
   end
 
+  describe '#journey_history' do
+    it 'should save the journey' do
+      journey.touch_in(entry_station)
+      journey.touch_out(exit_station)
+      end_journey = { entry_station: entry_station, exit_station: exit_station, complete: true }
+      expect(journey.journey_history).to include end_journey
+    end
+  end
+
 end
