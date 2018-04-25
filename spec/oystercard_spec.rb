@@ -30,26 +30,32 @@ describe Oystercard do
     end
   end
 
-  describe '#touch_in' do
+  describe '#start journey' do
     before do
       oystercard.top_up(10)
-      oystercard.touch_in(entry_station)
+      oystercard.start_journey
     end
+    # it 'should start a journey' do
+    #
+    # end
   end
 
   describe '#touch in error' do
-    it 'raises an error if the card has insufficient balance to touch in' do
-      expect { oystercard.touch_in(entry_station) }.to raise_error "Insufficient balance"
+    it 'raises an error if the card has insufficient balance to start a journey' do
+      expect { oystercard.start_journey }.to raise_error "Insufficient balance"
     end
+    # it 'should not initialize a journey' do
+    #
+    # end
   end
 
-  describe '#touch_out' do
+  describe '#end journey' do
     before do
       oystercard.top_up(10)
-      oystercard.touch_in(entry_station)
+      oystercard.end_journey
     end
-    it 'should deduct from the balance' do
-      expect { oystercard.touch_out(exit_station) }. to change{ oystercard.balance }.by(-Oystercard::FARE)
+    it 'should deduct the fare from the balance' do
+      expect { oystercard.end_journey }. to change{ oystercard.balance }.by(-Oystercard::FARE)
     end
   end
 
