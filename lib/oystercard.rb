@@ -1,5 +1,7 @@
 class Oystercard
 
+  #NEXT STEP: NEED TO START A JOURNEY AND DEDUCT FARE FROM BALANCE WHEN JOURNEY ENDS
+
   attr_reader :balance
 
   MAX_BALANCE = 90

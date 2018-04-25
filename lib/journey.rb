@@ -1,5 +1,7 @@
 class Journey
 
+  #STEP: MOVE JOURNEY HISTORY IN TO NEW CLASS
+
   attr_reader :current_journey, :journey_history
 
   def initialize
